@@ -1,0 +1,16 @@
+version: '3'
+services:
+    codeception:
+        image: codeception/codeceptjs
+        volumes:
+            - .:/tests
+        depends_on:
+            - chrome
+            - grafana
+        command: 'bash -c "sleep 5 && /codecept/docker/run.sh"'
+    chrome:
+        image: selenium/standalone-chrome
+    grafana:
+        image: grafana/grafana
+        environment:
+            GF_SECURITY_ADMIN_PASSWORD: 'newpass'
